@@ -9,6 +9,16 @@
 
 ---
 
+## 🖥️ Live Demo
+
+**QueryPilot** — a full portfolio-ready landing page built from Project V2 #1:
+
+🔗 **[Live Demo → facingshootingstar.github.io/Framer_Projects/querypilot/](https://facingshootingstar.github.io/Framer_Projects/querypilot/)**
+
+> Dark futuristic theme · Glassmorphism cards · Scroll animations · Interactive FAQ · Typing effect · Parallax · Fully responsive
+
+---
+
 ## 🎯 What Is This?
 
 A curated collection of **30 AI SaaS landing page projects** across 2 volumes, each with:
@@ -102,7 +112,11 @@ Framer_Projects/
 ├── README.md            ← You are here
 ├── PROJECTS.md          ← Volume 1: 15 projects (original)
 ├── PROJECTS_V2.md       ← Volume 2: 15 projects (expanded format)
-└── LICENSE              ← MIT License
+├── LICENSE              ← MIT License
+└── querypilot/          ← 🖥️ Built portfolio landing page
+    ├── index.html
+    ├── style.css
+    └── script.js
 ```
 
 ---

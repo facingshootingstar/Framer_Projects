@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryPilot — Ask Your Database Anything. In English.</title>
+    <meta name="description" content="Stop writing SQL. Stop waiting for engineers. Get instant answers from any database — just by asking in plain English. AI-powered natural language to SQL.">
+    <meta name="keywords" content="AI, database, SQL, natural language, query, analytics, business intelligence">
+    <meta name="author" content="QueryPilot">
+    <meta property="og:title" content="QueryPilot — Ask Your Database Anything">
+    <meta property="og:description" content="AI-powered natural language to SQL. Get instant answers from any database.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">QueryPilot</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#pricing" class="btn btn-ghost">Log In</a>
+                <a href="#pricing" class="btn btn-primary btn-sm">Get Started Free</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-effects">
+            <div class="hero-glow hero-glow-1"></div>
+            <div class="hero-glow hero-glow-2"></div>
+            <div class="hero-grid-overlay"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge reveal">
+                    <span class="badge-dot"></span>
+                    Now with GPT-5 Turbo &nbsp;·&nbsp; 99.2% Query Accuracy
+                </div>
+                <h1 class="hero-title reveal">
+                    Ask Your Database<br>
+                    Anything. <span class="gradient-text">In English.</span>
+                </h1>
+                <p class="hero-subtitle reveal">
+                    Stop writing SQL. Stop waiting for engineers. Get instant answers 
+                    from any database — just by asking. AI translates your questions 
+                    into perfect queries with auto-generated charts.
+                </p>
+                <div class="hero-ctas reveal">
+                    <a href="#pricing" class="btn btn-primary btn-lg">
+                        <span>Try Free — No SQL Required</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="#how-it-works" class="btn btn-ghost btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <span>Watch Demo</span>
+                    </a>
+                </div>
+                <div class="hero-social-proof reveal">
+                    <div class="avatar-stack">
+                        <div class="avatar" style="background: linear-gradient(135deg, #00f0ff, #b026ff);">J</div>
+                        <div class="avatar" style="background: linear-gradient(135deg, #ff6b6b, #ffa500);">S</div>
+                        <div class="avatar" style="background: linear-gradient(135deg, #00ff88, #00a8ff);">M</div>
+                        <div class="avatar" style="background: linear-gradient(135deg, #ff00ff, #ff6b6b);">A</div>
+                        <div class="avatar" style="background: linear-gradient(135deg, #ffd700, #ff6b6b);">K</div>
+                    </div>
+                    <div class="social-proof-text">
+                        <div class="stars">★★★★★</div>
+                        <span>Trusted by <strong>12,000+</strong> data teams worldwide</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-demo reveal">
+                <div class="demo-window">
+                    <div class="demo-header">
+                        <div class="demo-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="demo-title">QueryPilot — Connected to production_db</span>
+                    </div>
+                    <div class="demo-body">
+                        <div class="demo-chat">
+                            <div class="demo-message user-msg">
+                                <div class="msg-label">You</div>
+                                <div class="msg-content" id="typingDemo">Show me top 10 customers by revenue this quarter</div>
+                            </div>
+                            <div class="demo-message ai-msg">
+                                <div class="msg-label">QueryPilot AI</div>
+                                <div class="msg-sql">
+<pre><code><span class="sql-keyword">SELECT</span> c.name, <span class="sql-function">SUM</span>(o.amount) <span class="sql-keyword">AS</span> revenue
+<span class="sql-keyword">FROM</span> customers c
+<span class="sql-keyword">JOIN</span> orders o <span class="sql-keyword">ON</span> c.id = o.customer_id
+<span class="sql-keyword">WHERE</span> o.created_at >= <span class="sql-string">'2026-01-01'</span>
+<span class="sql-keyword">GROUP BY</span> c.name
+<span class="sql-keyword">ORDER BY</span> revenue <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">LIMIT</span> <span class="sql-number">10</span>;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="demo-chart">
+                            <div class="chart-bars">
+                                <div class="bar" style="--height: 95%; --delay: 0.1s;"><span class="bar-label">Acme Corp</span><span class="bar-value">$284K</span></div>
+                                <div class="bar" style="--height: 82%; --delay: 0.2s;"><span class="bar-label">TechFlow</span><span class="bar-value">$247K</span></div>
+                                <div class="bar" style="--height: 70%; --delay: 0.3s;"><span class="bar-label">DataWave</span><span class="bar-value">$211K</span></div>
+                                <div class="bar" style="--height: 61%; --delay: 0.4s;"><span class="bar-label">NovaSoft</span><span class="bar-value">$183K</span></div>
+                                <div class="bar" style="--height: 50%; --delay: 0.5s;"><span class="bar-label">CloudBase</span><span class="bar-value">$152K</span></div>
+                                <div class="bar" style="--height: 42%; --delay: 0.6s;"><span class="bar-label">SyncLabs</span><span class="bar-value">$127K</span></div>
+                                <div class="bar" style="--height: 35%; --delay: 0.7s;"><span class="bar-label">Orbit</span><span class="bar-value">$104K</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-logos reveal">
+            <p class="logos-label">Connects to your favorite databases</p>
+            <div class="logos-track">
+                <div class="logo-item">PostgreSQL</div>
+                <div class="logo-item">MySQL</div>
+                <div class="logo-item">BigQuery</div>
+                <div class="logo-item">Snowflake</div>
+                <div class="logo-item">MongoDB</div>
+                <div class="logo-item">Redshift</div>
+                <div class="logo-item">Supabase</div>
+                <div class="logo-item">PlanetScale</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROBLEM ==================== -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">The Problem</span>
+                <h2 class="section-title">Data Access Is <span class="gradient-text">Broken</span></h2>
+                <p class="section-subtitle">Your data has the answers. But getting them shouldn't require a CS degree.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card reveal" style="--delay: 0.1s;">
+                    <div class="problem-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg>
+                    </div>
+                    <h3>SQL Is a Bottleneck</h3>
+                    <p>Only 5% of your company can write SQL. The other 95% wait in line for data — killing speed and autonomy.</p>
+                    <div class="problem-stat">
+                        <span class="stat-number">73%</span>
+                        <span class="stat-label">of decisions delayed by data access</span>
+                    </div>
+                </div>
+                <div class="problem-card reveal" style="--delay: 0.2s;">
+                    <div class="problem-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>Engineers Hate Ad-Hoc Requests</h3>
+                    <p>"Can you pull this data?" is every engineer's least favorite Slack message. It derails deep work and costs your team hours.</p>
+                    <div class="problem-stat">
+                        <span class="stat-number">8hrs</span>
+                        <span class="stat-label">per week spent on ad-hoc queries</span>
+                    </div>
+                </div>
+                <div class="problem-card reveal" style="--delay: 0.3s;">
+                    <div class="problem-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9.5 12.5 11 14l3.5-3.5"/></svg>
+                    </div>
+                    <h3>Data Should Be Accessible to All</h3>
+                    <p>In 2026, asking for data should be as easy as asking a question. Not debugging a 47-line JOIN statement.</p>
+                    <div class="problem-stat">
+                        <span class="stat-number">47%</span>
+                        <span class="stat-label">of SQL queries contain errors on first run</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">From Question to <span class="gradient-text">Answer</span> in Seconds</h2>
+                <p class="section-subtitle">Three simple steps. Zero SQL required.</p>
+            </div>
+            <div class="steps-bento">
+                <div class="step-card step-1 reveal" style="--delay: 0.1s;">
+                    <div class="step-number">01</div>
+                    <div class="step-visual">
+                        <div class="step-icon-wrap">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v7c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12v7c0 1.66 4.03 3 9 3s9-1.34 9-3v-7"/></svg>
+                        </div>
+                    </div>
+                    <h3>Connect Your Database</h3>
+                    <p>Read-only, encrypted connection. Supports PostgreSQL, MySQL, BigQuery, Snowflake, MongoDB, and 20+ more. Takes 30 seconds.</p>
+                </div>
+                <div class="step-card step-2 reveal" style="--delay: 0.2s;">
+                    <div class="step-number">02</div>
+                    <div class="step-visual">
+                        <div class="step-icon-wrap">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>
+                        </div>
+                    </div>
+                    <h3>Ask in Plain English</h3>
+                    <p>"What's our MRR by plan?", "Which campaigns convert best?", "Show churn rate trend for Q1" — just type what you need.</p>
+                </div>
+                <div class="step-card step-3 reveal" style="--delay: 0.3s;">
+                    <div class="step-number">03</div>
+                    <div class="step-visual">
+                        <div class="step-icon-wrap">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        </div>
+                    </div>
+                    <h3>Get Charts & Answers</h3>
+                    <p>Instant results with auto-generated visualizations. Share dashboards with your team, schedule reports, or export anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FEATURES ==================== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Features</span>
+                <h2 class="section-title">Everything You Need to <span class="gradient-text">Own Your Data</span></h2>
+                <p class="section-subtitle">Powerful enough for data teams. Simple enough for everyone else.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal" style="--delay: 0.05s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3>Natural Language to SQL</h3>
+                    <p>Ask questions in plain English. Our AI translates with 99.2% accuracy — handling JOINs, subqueries, and window functions.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.1s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Auto-Visualizations</h3>
+                    <p>Bar charts, line graphs, pie charts, heatmaps — AI picks the best visualization for your data automatically.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.15s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v7c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12v7c0 1.66 4.03 3 9 3s9-1.34 9-3v-7"/></svg>
+                    </div>
+                    <h3>Multi-Database Support</h3>
+                    <p>PostgreSQL, MySQL, BigQuery, Snowflake, MongoDB, Redshift, Supabase — connect them all from one dashboard.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.2s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>Scheduled Queries</h3>
+                    <p>Set up recurring queries that run on autopilot. Get results delivered to Slack, email, or your dashboard weekly.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.25s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Team Sharing</h3>
+                    <p>Share queries, dashboards, and saved views with your team. Role-based access keeps your data secure.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.3s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Row-Level Security</h3>
+                    <p>Read-only connections. Encrypted at rest and in transit. SOC 2 Type II certified. Your data never leaves your infrastructure.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.35s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                    </div>
+                    <h3>Export Anywhere</h3>
+                    <p>One-click export to CSV, Google Sheets, Notion, or PDF. Send results exactly where your team needs them.</p>
+                </div>
+                <div class="feature-card reveal" style="--delay: 0.4s;">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                    </div>
+                    <h3>AI Follow-Up Suggestions</h3>
+                    <p>After every query, AI suggests deeper questions you didn't think to ask — uncovering insights you'd otherwise miss.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">Loved by <span class="gradient-text">Data Teams</span> Worldwide</h2>
+                <p class="section-subtitle">Join 12,000+ companies that stopped writing SQL.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal" style="--delay: 0.1s;">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <blockquote>"QueryPilot saved our team 15 hours per week. Our marketing team now pulls their own data instead of filing Jira tickets. Game changer."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #00f0ff, #b026ff);">S</div>
+                        <div class="author-info">
+                            <strong>Sarah Chen</strong>
+                            <span>Product Manager, Series B SaaS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="--delay: 0.2s;">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <blockquote>"I used to spend 2 hours every Monday building the weekly report. Now I just type 'weekly metrics dashboard' and it's done in 10 seconds."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #ff6b6b, #ffa500);">M</div>
+                        <div class="author-info">
+                            <strong>Marcus Thompson</strong>
+                            <span>Marketing Director, CloudBase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" style="--delay: 0.3s;">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <blockquote>"As a solo founder, QueryPilot is like having a data analyst on the team. I query my production DB daily and make decisions 10x faster."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #00ff88, #00a8ff);">A</div>
+                        <div class="author-info">
+                            <strong>Alex Rivera</strong>
+                            <span>Founder & CEO, TechFlow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRICING ==================== -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Simple, <span class="gradient-text">Transparent</span> Pricing</h2>
+                <p class="section-subtitle">Start free. Scale when you're ready. No credit card required.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal" style="--delay: 0.1s;">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Free</h3>
+                        <div class="plan-price">
+                            <span class="price-amount">$0</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-desc">Perfect for exploring and personal projects.</p>
+                    </div>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> 50 queries per month</li>
+                        <li><span class="check">✓</span> 1 database connection</li>
+                        <li><span class="check">✓</span> Basic chart types</li>
+                        <li><span class="check">✓</span> CSV export</li>
+                        <li><span class="check">✓</span> Community support</li>
+                    </ul>
+                    <a href="#" class="btn btn-ghost btn-block">Get Started</a>
+                </div>
+                <div class="pricing-card popular reveal" style="--delay: 0.2s;">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Pro</h3>
+                        <div class="plan-price">
+                            <span class="price-amount">$24</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-desc">For teams that need data on demand.</p>
+                    </div>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> Unlimited queries</li>
+                        <li><span class="check">✓</span> 5 database connections</li>
+                        <li><span class="check">✓</span> All chart types + dashboards</li>
+                        <li><span class="check">✓</span> Scheduled reports & Slack alerts</li>
+                        <li><span class="check">✓</span> Google Sheets & Notion export</li>
+                        <li><span class="check">✓</span> Team sharing (5 seats)</li>
+                        <li><span class="check">✓</span> Priority support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-block">Start Free Trial</a>
+                </div>
+                <div class="pricing-card reveal" style="--delay: 0.3s;">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <div class="plan-price">
+                            <span class="price-amount">$79</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-desc">For organizations with serious data needs.</p>
+                    </div>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> Everything in Pro</li>
+                        <li><span class="check">✓</span> Unlimited connections & seats</li>
+                        <li><span class="check">✓</span> SSO & SAML</li>
+                        <li><span class="check">✓</span> Audit logs & compliance</li>
+                        <li><span class="check">✓</span> Custom connectors & API</li>
+                        <li><span class="check">✓</span> Dedicated support + SLA</li>
+                        <li><span class="check">✓</span> On-premise deployment option</li>
+                    </ul>
+                    <a href="#" class="btn btn-ghost btn-block">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal" style="--delay: 0.05s;">
+                    <button class="faq-question" id="faq-btn-1" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span>Is my database data secure?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>Absolutely. We use read-only connections so we can never modify your data. All connections are encrypted with TLS 1.3, data is encrypted at rest with AES-256, and we're SOC 2 Type II certified. Your query results are processed in memory and never stored permanently on our servers.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="--delay: 0.1s;">
+                    <button class="faq-question" id="faq-btn-2" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span>Which databases do you support?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>We support PostgreSQL, MySQL, MariaDB, BigQuery, Snowflake, MongoDB, Amazon Redshift, Supabase, PlanetScale, CockroachDB, ClickHouse, and more. We're constantly adding new connectors — if yours isn't listed, contact us and we'll prioritize it.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="--delay: 0.15s;">
+                    <button class="faq-question" id="faq-btn-3" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span>How accurate is the AI query translation?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>Our AI achieves 99.2% accuracy on standard business queries. For complex queries involving multiple JOINs or window functions, accuracy is 96%+. You always see the generated SQL before it runs, so you can verify and edit if needed. The AI also learns from your schema to improve over time.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="--delay: 0.2s;">
+                    <button class="faq-question" id="faq-btn-4" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span>Can I share dashboards with my team?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Yes! Pro and Enterprise plans support team sharing. Create shareable dashboards, saved queries, and scheduled reports that your entire team can access. Enterprise plans include role-based access control and row-level security.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" style="--delay: 0.25s;">
+                    <button class="faq-question" id="faq-btn-5" aria-expanded="false" aria-controls="faq-answer-5">
+                        <span>What if I want to cancel?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>Cancel anytime with one click — no contracts, no lock-in, no cancellation fees. Your data connections are immediately removed, and all cached query results are purged within 24 hours. We also offer a 30-day money-back guarantee on all paid plans.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FINAL CTA ==================== -->
+    <section class="final-cta" id="cta">
+        <div class="cta-bg-effects">
+            <div class="cta-glow cta-glow-1"></div>
+            <div class="cta-glow cta-glow-2"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2 class="cta-title">Your Data Has Answers.<br><span class="gradient-text">Stop Gatekeeping Them.</span></h2>
+                <p class="cta-subtitle">Join 12,000+ teams who replaced SQL with plain English. Free forever for small teams.</p>
+                <div class="cta-actions">
+                    <a href="#pricing" class="btn btn-primary btn-xl">
+                        <span>Start Free — No SQL Required</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <p class="cta-note">No credit card required · Free plan available · Setup in 30 seconds</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">QueryPilot</span>
+                    </a>
+                    <p>AI-powered natural language database queries. Ask anything, get instant answers.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">SOC 2</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QueryPilot. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="GitHub">GH</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
